@@ -11,6 +11,7 @@ public final class TestPlanner {
     testTinyTasksAreNotFree();
     testBeatsScoreOrder();
     testMatchesBruteForce();
+    CsvTests.run();
     System.out.println("Velocity Lens Java tests passed.");
   }
 

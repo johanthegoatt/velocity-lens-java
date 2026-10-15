@@ -1,0 +1,7 @@
+﻿name,effort,impact,urgency,confidence
+"Fix login timeout, mobile",3,9,9,90%
+Onboarding emails,5,6,4,70
+"Rewrite ""Pricing"" page",4,7,5,0.8
+Dark mode,6,5,2,60%
+Flaky test sweep,2,4,6,95
+Export to CSV,3,6,3,0.75
