@@ -1,0 +1,17 @@
+name: test
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [17, 21]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - run: javac -encoding UTF-8 -d out src/main/java/com/velocitylens/velocity/*.java tests/*.java
+      - run: java -ea -cp out TestPlanner
+      - run: java -cp out com.velocitylens.velocity.Main examples/backlog.csv --budget 10
