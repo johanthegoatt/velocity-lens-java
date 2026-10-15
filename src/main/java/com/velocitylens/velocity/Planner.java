@@ -18,9 +18,7 @@ public final class Planner {
   private Planner() {}
 
   public static double score(Task task) {
-    double effort = Math.max(task.effort, 0.25d);
-    double confidence = Math.max(0.0d, Math.min(task.confidence, 1.0d));
-    return ((task.impact * 1.7d) + (task.urgency * 1.3d)) * confidence / effort;
+    return task.value() / task.chargedEffort();
   }
 
   public static List<RankedTask> rank(List<Task> tasks) {
@@ -42,11 +40,11 @@ public final class Planner {
     double used = 0.0d;
 
     for (RankedTask rankedTask : ranked) {
-      if (used + rankedTask.task.effort > budget) {
+      if (used + rankedTask.task.chargedEffort() > budget) {
         continue;
       }
       selected.add(rankedTask);
-      used += rankedTask.task.effort;
+      used += rankedTask.task.chargedEffort();
     }
     return selected;
   }
